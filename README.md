@@ -47,3 +47,34 @@ public String OnMessage(String count) {
   return count;
 }
 ```
+
+### @OnClose
+El método OnClose() se invocará cuando el cliente se desconecte.
+
+```
+@OnClose
+public void onClose();
+
+@OnClose
+public void onClose(RemoteEndPoint r);
+
+@OnClose
+public void onClose(RemoteEndPoint r, EventBus e);
+```
+
+### @PathParam
+Se utiliza para parsear automáticamente una ruta y asignar tokens de la ruta a variables de clase.
+
+```
+@PushEndPoint("/somepath/{room}/{user}")
+@Singleton
+public class ChatResource {
+  @PathParam("room")
+  private String room;
+  
+  @PathParam("user")
+  private String username;
+  
+  //...
+}
+```

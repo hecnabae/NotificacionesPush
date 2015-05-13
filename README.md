@@ -96,3 +96,19 @@ Una vez tenemos a nuestra disposición una instancia de EventBus, la publicació
 - publish(String path, Object o). Notifica el objeto a los RemoteEndPoints conectados a la ruta.
 - publish(String path, Object o, Reply reply). Notifica el objeto a los RemoteEndPoints conectados a la ruta mediante una instancia de Reply.
   - Reply es una interfaz con un callback llamado 'completed(String path)' que se invoca cuando se entrega el mensaje al PushEndPoint que coincide con la ruta especificada para activar el proceso de publicación.
+
+## 4 Socket Component
+Es un componente que gestiona la conexión entre el servidor y el navegador. Un modo común de utilizar el socket es la definición de una ruta y un callback para gestionar emisiones.
+
+```
+<p:push channel="/chat" onmessage="handlePublish"/>
+```
+
+### Api de cliente
+widget: Primefaces.widget.socket
+
+| Method       | Params | Return type | Description                               | 
+| ------------ | ------ | ----------- | ----------------------------------------  |
+| connect(uri) | uri    | void        | Conexión con la uri dada.                 |
+| push(json)   | json   | void        | Notifica datos desde el lado del cliente. |
+| disconnect   | -      | void        | Desconexión del canal.                    |

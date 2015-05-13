@@ -78,3 +78,21 @@ public class ChatResource {
   //...
 }
 ```
+
+## 3 API
+
+### Clase RemoteEndPoint
+Representa la conexión remota, esto es el Navegador. Una instancia de RemoteEndPoint mantiene información sobre cabeceras, queryString, cuerpo, uri, ruta y segmentos de ruta que pueden utilizarse para manipular peticiones entrantes.
+
+### Clase EventBus
+Puede abarcar multiples instancias de PushEndPoint. El bus de eventos implementa publicación/suscripción y mensajería punto a punto. Para obtener una instancia de esta clase:
+
+```
+EventBus ebus = EventBusFactory.getDefault().eventBus();
+```
+
+Una vez tenemos a nuestra disposición una instancia de EventBus, la publicación de datos a suscriptores se realiza mediante la sobrecarga de métodos "publish".
+- publish(Object o). Notifica el objeto 'o' a los RemoteEndPoints conectados.
+- publish(String path, Object o). Notifica el objeto a los RemoteEndPoints conectados a la ruta.
+- publish(String path, Object o, Reply reply). Notifica el objeto a los RemoteEndPoints conectados a la ruta mediante una instancia de Reply.
+  - Reply es una interfaz con un callback llamado 'completed(String path)' que se invoca cuando se entrega el mensaje al PushEndPoint que coincide con la ruta especificada para activar el proceso de publicación.
